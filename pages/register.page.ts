@@ -34,7 +34,6 @@ export class RegisterPage {
 
   async open() {
     await this.page.goto('/auth/register');
-    await this.page.waitForLoadState('networkidle');
   }
 
   async registerCustomer(customer: CustomerData) {

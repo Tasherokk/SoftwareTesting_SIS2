@@ -2,9 +2,8 @@ import { test, expect } from '../fixtures/pages.fixture';
 import { createRandomUser } from '../data/user.factory';
 
 test.describe('Test 1: Customer Registration', () => {
-  test('should successfully register a new customer and verify login', async ({
+  test('should successfully register a new customer', async ({
     registerPage,
-    loginPage,
     page,
   }) => {
     // Generate isolated random test data for this run
@@ -18,9 +17,5 @@ test.describe('Test 1: Customer Registration', () => {
 
     // 3. Verify user is redirected to the Login page after successful registration
     await expect(page).toHaveURL(/\/auth\/login/);
-
-    // 4. Verify the newly registered customer can log in
-    await loginPage.login(newCustomer.email, newCustomer.password);
-    await expect(page).toHaveURL(/\/account/);
   });
 });

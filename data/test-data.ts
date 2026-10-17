@@ -2,7 +2,6 @@ export const TEST_DATA = {
   validUser: {
     email: 'customer@practicesoftwaretesting.com',
     password: 'welcome01',
-    name: 'Jane Doe',
   },
   invalidUser: {
     email: 'wrong.user@practicesoftwaretesting.com',

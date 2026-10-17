@@ -12,7 +12,7 @@ test.describe('Test 4: Product Comparison', () => {
     const product1 = await productPage.getDetailsInfo();
 
     // 3. Navigate back to catalog and open Product 2 details
-    await productPage.openHome();
+    await productPage.goBackToHome();
     await productPage.openProductDetailsByIndex(1);
     const product2 = await productPage.getDetailsInfo();
 

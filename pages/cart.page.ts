@@ -52,26 +52,22 @@ export class CartPage {
 
     this.paymentMethodSelect = page.getByTestId('payment-method');
     this.finishButton = page.getByTestId('finish');
-    this.successAlert = page.locator('.alert-success');
+    this.successAlert = page.getByText(/payment was successful/i);
   }
 
   async open() {
     await this.page.goto('/checkout');
-    await this.page.waitForLoadState('domcontentloaded');
   }
 
   async proceedFromCartSummary() {
-    await this.proceed1Button.waitFor({ state: 'visible' });
     await this.proceed1Button.click();
   }
 
   async proceedFromSignInStep() {
-    await this.proceed2Button.waitFor({ state: 'visible' });
     await this.proceed2Button.click();
   }
 
   async fillBillingAddress(address: BillingAddressData) {
-    await this.proceed3Button.waitFor({ state: 'visible' });
 
     if (address.country) {
       await this.countrySelect.selectOption(address.country);
@@ -91,7 +87,6 @@ export class CartPage {
   }
 
   async selectPaymentMethod(methodValue: string = 'cash-on-delivery') {
-    await this.paymentMethodSelect.waitFor({ state: 'visible' });
     await this.paymentMethodSelect.selectOption(methodValue);
   }
 
@@ -110,6 +105,5 @@ export class CartPage {
 
   async expectOrderSuccessful() {
     await expect(this.successAlert).toBeVisible();
-    await expect(this.successAlert).toContainText(/payment was successful/i);
   }
 }

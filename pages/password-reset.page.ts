@@ -10,12 +10,11 @@ export class PasswordResetPage {
     this.emailInput = page.getByTestId('email');
     this.submitButton = page.getByTestId('forgot-password-submit');
     this.emailError = page.getByTestId('email-error');
-    this.confirmationAlert = page.locator('.alert:not(.alert-danger)');
+    this.confirmationAlert = page.getByText('page.forgot-password.confirm');
   }
 
   async open() {
     await this.page.goto('/auth/forgot-password');
-    await this.page.waitForLoadState('domcontentloaded');
   }
 
   async requestReset(email: string) {
